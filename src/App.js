@@ -73,7 +73,9 @@ class App extends Component {
 
     return (
       <section className="mainSection">
-        <h1 className="mainTitle">Phonebook</h1>
+        <h1 className="mainTitle">
+          <span className="logo">P</span>honebook
+        </h1>
         <ContactForm onSubmit={this.formSubmitHandler} />
 
         <h2 className="mainTitle">Contacts</h2>
