@@ -41,9 +41,11 @@ class App extends Component {
 
     if (filter.length === 0) return contacts;
 
-    // const normalizetext = filter.toLowerCase();
+    const normalizetext = filter.toLowerCase();
 
-    return contacts.filter((contact) => contact.name.includes(filter));
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(normalizetext)
+    );
   };
 
   formSubmitHandler = (data) => {
