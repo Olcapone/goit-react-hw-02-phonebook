@@ -1,6 +1,5 @@
 import { Component } from "react";
 import shortid from "shortid";
-//import PropTypes from "prop-types";
 import "./App.css";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
@@ -20,27 +19,30 @@ class App extends Component {
   state = {
     contacts: this.props.initContacts,
     filter: this.props.initFilter,
-    name: this.props.initName,
-    number: this.props.initNumber,
   };
 
   addContact = ({ name, number }) => {
+    const { contacts } = this.state;
     const newContact = {
       id: shortid.generate(),
       name,
       number,
     };
 
-    this.setState(({ contacts }) => ({
-      contacts: [newContact, ...contacts],
-    }));
+    const checkContact = contacts.find((contact) =>
+      contact.name.includes(name)
+    );
+    if (checkContact) {
+      alert("its contact already added");
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [newContact, ...contacts],
+      }));
+    }
   };
 
   findContact = () => {
     const { filter, contacts } = this.state;
-
-    if (filter.length === 0) return contacts;
-
     const normalizetext = filter.toLowerCase();
 
     return contacts.filter((contact) =>
@@ -57,26 +59,27 @@ class App extends Component {
     this.setState({ [name]: value });
   };
 
-  deleteContact() {}
+  deleteContact = (name) => {
+    const { contacts } = this.state;
+
+    this.setState({
+      contacts: contacts.filter((contact) => contact.name !== name),
+    });
+  };
 
   render() {
     const { contacts, filter } = this.state;
-
-    let visibleContact = this.findContact();
+    let visibleContact = filter.length === 0 ? contacts : this.findContact();
 
     return (
-      <>
+      <section className="mainSection">
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.formSubmitHandler} />
 
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
-        <ContactList
-          date={visibleContact}
-          base={contacts}
-          onDelete={this.deleteContact}
-        />
-      </>
+        <ContactList date={visibleContact} onDelete={this.deleteContact} />
+      </section>
     );
   }
 }

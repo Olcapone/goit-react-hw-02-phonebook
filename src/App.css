@@ -1,5 +1,14 @@
+body {
+  background-color: #ebf4f3;
+}
+
 .App {
   text-align: center;
+}
+
+.mainSection {
+  background-color: #fff;
+  max-width: 600px;
 }
 
 .App-logo {

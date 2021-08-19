@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import s from "./ContactForm.module.css";
 
 class ContactForm extends Component {
   static defaultProps = {
@@ -27,7 +28,7 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={s.form} onSubmit={this.handleSubmit}>
         <label>
           Name
           <input
