@@ -1,14 +1,15 @@
 import React from "react";
 import shortid from "shortid";
 
-export default function ContactList({ ...props }) {
-  console.log({ ...props.date });
-
+export default function ContactList({ date, onDelete }) {
   return (
     <ul>
-      {props.date.map((contact) => (
+      {date.map(({ name, number }) => (
         <li key={shortid.generate()}>
-          {contact.name} : {contact.number}{" "}
+          {name} : {number}{" "}
+          <button type="button" onClick={() => onDelete(name)}>
+            Delete
+          </button>
         </li>
       ))}
     </ul>
