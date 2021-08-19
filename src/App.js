@@ -73,10 +73,10 @@ class App extends Component {
 
     return (
       <section className="mainSection">
-        <h1>Phonebook</h1>
+        <h1 className="mainTitle">Phonebook</h1>
         <ContactForm onSubmit={this.formSubmitHandler} />
 
-        <h2>Contacts</h2>
+        <h2 className="mainTitle">Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList date={visibleContact} onDelete={this.deleteContact} />
       </section>

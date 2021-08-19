@@ -1,13 +1,18 @@
 import React from "react";
 import shortid from "shortid";
+import s from "./ContactList.module.css";
 
 export default function ContactList({ date, onDelete }) {
   return (
-    <ul>
+    <ul className={s.list}>
       {date.map(({ name, number }) => (
-        <li key={shortid.generate()}>
+        <li className={s.item} key={shortid.generate()}>
           {name} : {number}{" "}
-          <button type="button" onClick={() => onDelete(name)}>
+          <button
+            className={s.button}
+            type="button"
+            onClick={() => onDelete(name)}
+          >
             Delete
           </button>
         </li>
