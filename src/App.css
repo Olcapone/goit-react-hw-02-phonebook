@@ -53,4 +53,9 @@ ul {
   .mainTitle {
     font-size: 24px;
   }
+
+  .logo {
+    width: 20px;
+    height: 20px;
+  }
 }
